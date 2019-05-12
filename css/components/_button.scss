@@ -1,0 +1,19 @@
+.button {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    border-radius: 3rem;
+    background: #ffb61c;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.05);
+    transition: background 500ms;
+    cursor: pointer;
+    width: 100%;
+    i {
+        font-size: 10pt;
+        margin: 0 .1rem 0 0;
+    }
+    &:hover {
+        background: #ffc342;
+    }
+}

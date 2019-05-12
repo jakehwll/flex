@@ -1,0 +1,183 @@
+<html>
+
+<head>
+
+    <title>Flex &mdash; A FlexBox Builder.</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+        crossorigin="anonymous">
+
+
+    <link rel="shortcut icon" href="/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+
+</head>
+
+<body>
+
+    <div class="gradient"></div>
+
+    <div class="container">
+
+        <main>
+
+            <header>
+
+                <h1>💪 Flex</h1>
+                <h2>A FlexBox Builder.</h2>
+
+                <p>
+                    Flexbox's are cool, but a pain in the dairy air to write. If you don't understand the wonder's of
+                    flexbox &amp; want here <span>oLdEr BrOWseRs</span>, then
+
+                    <a href="https://caniuse.com/#feat=flexbox">here's the door</a>.
+                </p>
+
+                <p style="opacity: .5;">
+                    Don't be afraid to hover the other objects in order to change specific values on the objects.
+                </p>
+
+            </header>
+
+            <section>
+
+                <div class="column">
+                    <label for="items">Items.</label>
+                    <input type="number" min="1" value="3" id="items">
+                </div>
+
+                <div class="column">
+                    <label for="items">Flex Direction.</label>
+                    <select id="flex-direction">
+                        <option value="row">Row</option>
+                        <option value="row-reverse">Row Reverse</option>
+                        <option value="column">Column</option>
+                        <option value="column-reverse">Column Reverse</option>
+                    </select>
+                </div>
+
+            </section>
+
+            <section>
+
+                <div class="column">
+                    <label for="items">Wrap.</label>
+                    <select id="flex-wrap">
+                        <option value="">No Wrap (default)</option>
+                        <option value="wrap">Forwards Wrap</option>
+                        <option value="wrap-reverse">Reverse Wrap </option>
+                    </select>
+                </div>
+
+                <div class="column">
+                    <label for="items">Justify Content.</label>
+                    <select id="justify-content">
+                        <option value="flex-start">Flex Start (default)</option>
+                        <option value="flex-end">Flex End</option>
+                        <option value="center">Center</option>
+                        <option value="space-between">Space Between</option>
+                        <option value="space-around">Space Around</option>
+                    </select>
+                </div>
+
+                <div class="column">
+                    <label for="items">Align Items.</label>
+                    <select id="align-items">
+                        <option value="">Stretch (default)</option>
+                        <option value="flex-start">Flex Start</option>
+                        <option value="flex-end">Flex End</option>
+                        <option value="center">Center</option>
+                        <option value="baseline">Baseline</option>
+                    </select>
+                </div>
+
+            </section>
+
+            <footer>
+
+                <textarea id="output" readonly>display: flex;</textarea>
+
+                <div class="button">
+                    Copy CSS.
+                </div>
+
+            </footer>
+
+        </main>
+
+        <aside>
+
+            <div class="item" id="1">1</div>
+            <div class="item" id="2">2</div>
+            <div class="item" id="3">3</div>
+
+        </aside>
+
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+
+    var clicking = false;
+    var position;
+    var scrollpos;
+
+    $(window).mousedown(function (e) {
+        clicking = true;
+        position = e.pageY;
+    });
+
+    $(window).mouseup(function () {
+        clicking = false;
+    });
+
+    $(window).mousemove(function (e) {
+        if (clicking == false)
+            return;
+        scrollpos = $('main').scrollTop();
+        $('main').scrollTop(scrollpos + (e.pageY - position));
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $("aside").css('display', 'flex')
+    });
+
+    $('input').change(function () {
+        var i;
+        var amt = $('input').val();
+
+        $('aside').html('');
+
+        for (i = 0; i < amt; i++) {
+            $('aside').append('<div class="item" id="item-{i}">{i}</div>'.replace(/\{i\}/g, i + 1));
+        }
+    });
+
+    $("select").change(function () {
+
+        $property = $(this).attr('id')
+        $key = $(this).val()
+
+        $("aside").css($property, $key)
+
+        $("textarea").val($('aside').attr('style').replace('; ', ';\n'))
+
+    });
+
+    $('textarea').click(function () {
+        $("textarea").select();
+    });
+
+    $('.button').click(function () {
+        $("textarea").select();
+        document.execCommand("copy");
+    });
+
+</script>
+
+</html>

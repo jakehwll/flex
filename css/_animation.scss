@@ -1,0 +1,23 @@
+a {
+    padding-bottom: 1px;
+    -webkit-transition: all 200ms ease;
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        background: #ffb61c;
+        transition: all 200ms ease;
+    }
+    &:hover::after {
+        opacity: 0;
+        -webkit-transform: translateY(3px);
+        -moz-transform: translateY(3px);
+        -ms-transform: translateY(3px);
+        -o-transform: translateY(3px);
+        transform: translateY(3px);
+    }
+}
