@@ -148,35 +148,57 @@
 
 <script>
 
+    // FLEXBOX
+
     $(document).ready(function () {
+
+        // Make it flexbox.
         $("aside").css('display', 'flex')
+
     });
 
+    // ITEM VALUE AMOUNT
+
     $('input').change(function () {
+
+        // Variablise Input
         var i;
         var amt = $('input').val();
 
+        // Set content to null.
         $('aside').html('');
 
+        // Loop through items.
         for (i = 0; i < amt; i++) {
+            // Append an item for each.
             $('aside').append('<div class="item" id="item-{i}">{i}</div>'.replace(/\{i\}/g, i + 1));
         }
+
     });
+
+    // CHANGE FLEXBOX VALUES
 
     $("select").change(function () {
 
-        $property = $(this).attr('id')
-        $key = $(this).val()
+        // Property and new value to chance `style` attribute to.
+        $property = $(this).attr('id');
+        $key = $(this).val();
 
-        $("aside").css($property, $key)
+        // Change the `style` attribute to match.
+        $("aside").css($property, $key);
 
+        // Set textarea output as style tag (stylised).
         $("textarea").val($('aside').attr('style').replace('; ', ';\n'))
 
     });
 
+    // TEXTAREA HIGHLIGHTER
+
     $('textarea').click(function () {
         $("textarea").select();
     });
+
+    // SAVE-BUTTON
 
     $('.button').click(function () {
         $("textarea").select();
