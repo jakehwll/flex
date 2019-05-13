@@ -141,8 +141,6 @@ a:hover::after {
   margin: 0rem 1rem;
   padding: 3rem;
   overflow: scroll;
-  -ms-scroll-snap-type: both mandatory;
-      scroll-snap-type: both mandatory;
 }
 
 .container main::-webkit-scrollbar {
